@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      New Post
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="picurl" *ngIf="photo" />
+  <ion-col col-4>
+    <button ion-button icon-only (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </button>
+  </ion-col>
+
+  <form>
+    <div class="spacer" style="width:300px;height:20px;"></div>
+    <ion-card>
+      <ion-item>
+        <ion-label>
+          제목
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="title" name="title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          카테고리
+        </ion-label>
+        <ion-select name="" [(ngModel)]="category" name="category">
+          <ion-option>Book</ion-option>
+          <ion-option>Furniture</ion-option>
+          <ion-option>Clothes</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          추가설명
+        </ion-label>
+        <ion-textarea [(ngModel)]="detail" name="detail"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          시작가격
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="price" name="price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          경매기한
+        </ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" max="2020-12-31" [(ngModel)]="endDate" name="endDate"></ion-datetime>
+      </ion-item>
+    </ion-card>
+
+    <button (click)="savePost(title, category, detail, price, endDate)" ion-button color="positive" block>
+      게시
+    </button>
+
+  </form>
+</ion-content>

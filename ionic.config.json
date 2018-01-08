@@ -1,0 +1,8 @@
+{
+  "name": "followingpdf",
+  "app_id": "275eee85",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

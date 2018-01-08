@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Email Verification
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#000000;font-size:15px;">
+      Check the code sent through the email!!
+    </p>
+  </div>
+
+  <form>
+    <ion-list>
+
+      <ion-item>
+        <ion-label>
+          Verification Code
+        </ion-label>
+        <ion-input type="text" placeholder=""></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button color="stable" block on-click="saveNewAccount()">
+      Confirm
+    </button>
+
+  </form>
+</ion-content>

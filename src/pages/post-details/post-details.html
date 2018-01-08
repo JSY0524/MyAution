@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{postInfo.title}}</ion-title>
+    <ion-buttons end>
+      <button [disabled]="postInfo.val().status=='Off'" ion-button icon-only on-click="goToBid()">
+        <ion-icon name="trending-up"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img src="{{postInfo.val().picture}}" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  </div>
+
+  <form>
+
+    <div class="spacer" style="width:300px;height:20px;"></div>
+    <ion-card>
+      <ion-item>
+        <ion-label>
+          현재가 : {{postInfo.val().price}}
+        </ion-label>
+      </ion-item>
+
+      <div class="spacer" style="width:300px;height:20px;"></div>
+
+      <ion-item>
+        <ion-label>
+          카테고리 : {{postInfo.val().category}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label placeholder="">
+          {{postInfo.val().detail}}
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          경매기한 : {{postInfo.val().endDate}}
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card *ngIf="postInfo.val().log && postInfo.val().status=='Off'">
+      <ion-item>
+        <ion-label>
+          판매자 정보 : {{phone}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          낙찰자 정보 : {{ph1}}
+        </ion-label>
+      </ion-item>
+
+    </ion-card>
+    
+
+    <ion-col *ngIf="!(postInfo.val().userUid==currUid)" ngOnInit="findNum()" col-4>
+      <button ion-button icon-only (click)="writeQuestion()">
+        <ion-icon name="list"> 질문달기 </ion-icon>
+      </button>
+    </ion-col>
+
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let question of questions" (click)="writeAnswer(question)" detail-push>
+      <h2> {{question.val().msg}} </h2>
+      <h3 *ngIf="question.val().ans"> &#62; Poster : {{question.val().ans.msg}} </h3>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

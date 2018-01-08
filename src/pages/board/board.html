@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      경매 게시판
+    </ion-title>
+    <ion-buttons right> 
+      <button ion-button icon-only on-click="logOut()">
+        <ion-icon name="log-out"> </ion-icon> 
+      </button> 
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only on-click="goToPost()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>
+      카테고리
+    </ion-label>
+    <ion-select class="myCustomSelect" name="" [(ngModel)]="category" name="category" (ionChange)=reload(category)>
+      <ion-option>Book</ion-option>
+      <ion-option>Furniture</ion-option>
+      <ion-option>Clothes</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-input type="number" placeholder="Minimum Price" [(ngModel)]="start" (ionChange)=reload(category)> </ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-input type="number" placeholder="Maximum Price" [(ngModel)]="end" (ionChange)=reload(category)> </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item *ngFor="let post of posts" (click)="goPostDetail(post)" detail-push>
+      <ion-thumbnail item-left>
+        <img src="{{post.val().picture}}">
+      </ion-thumbnail>
+      <h2>{{post.val().title}}</h2>
+      <p>현재가 : {{post.val().price}}</p>
+      <ion-thumbnail item-right>
+        <img *ngIf="post.val().status=='Off'" src="assets/icon/nobas.png">
+        <img *ngIf="post.val().status=='On'" src="assets/icon/basket.png">
+        
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

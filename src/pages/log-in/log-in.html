@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Log In
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="logInForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-input formControlName="email" type="text"[(ngModel)]="email" placeholder="Email"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="logInForm.controls.email.hasError('required') && (logInForm.controls.email.touched || logInForm.controls.email.dirty)" > 
+        <div style="color:crimson"> Email Should be filled </div>
+      </ion-item>
+      <ion-item *ngIf="logInForm.controls.email.hasError('minlength') && logInForm.controls.email.dirty" class="alert alert-danger"> 
+        <div style="color:crimson"> Email Should be more than 4 letters </div>
+      </ion-item>
+      <ion-item *ngIf="logInForm.controls.email.hasError('pattern') && logInForm.controls.email.dirty" class="alert alert-danger"> 
+        <div style="color:crimson"> Email Should be in correct format </div>
+      </ion-item>
+    
+      <ion-item>
+        <ion-input formControlName="pwd" type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+      </ion-item>
+      
+      <ion-item *ngIf="logInForm.controls.pwd.hasError('required') && (logInForm.controls.pwd.touched || logInForm.controls.pwd.dirty)" > 
+        <div style="color:crimson"> Password Should be filled </div>
+      </ion-item>
+      <ion-item *ngIf="logInForm.controls.pwd.hasError('minlength') && (logInForm.controls.pwd.touched || logInForm.controls.pwd.dirty)" > 
+        <div style="color:crimson"> Password Should be more than 8 letters </div>
+      </ion-item>
+    
+    </ion-list>
+  </form>
+    
+  <div class="spacer" style="height:40px;"></div>
+
+  <button ion-button color="stable" [disabled]="!logInForm.valid" block on-click="logInUser(email, password)">
+    Log in
+  </button>
+
+  <button id="signUpBtn" ion-button clear color="positive" block on-click="goToSignUp()">
+    Or create an account
+  </button>
+
+</ion-content>

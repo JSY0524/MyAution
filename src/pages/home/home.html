@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row> 
+    <ion-col col-8> 
+      <ion-item> 
+        <ion-label stacked>Name</ion-label> 
+        <ion-input [(ngModel)]="guestName" type="text" placeholder="What's your guest's name?"></ion-input> 
+      </ion-item> 
+    </ion-col> 
+    <ion-col col-4> 
+      <button ion-button icon-only (click)="takePicture()"> 
+        <ion-icon name="camera"></ion-icon> 
+      </button> 
+    </ion-col> 
+  </ion-row> 
+  <span *ngIf="guestPicture">Picture taken!</span>
+  <ion-item-sliding >
+    <ion-item>
+      idx : {{dbAll}}
+    </ion-item>
+  </ion-item-sliding>
+  <ion-col col-4> 
+    <button ion-button icon-only (click)="takeManyPicture()"> 
+      <ion-icon name="camera"></ion-icon> 
+    </button> 
+  </ion-col>
+
+  <span >HI:{{pics}}</span>
+  <ion-item-sliding #slidingItem *ngFor="let pic of pics"> 
+    <ion-item>
+      img linke : {{pic}}
+      <img [src]="pic">
+    </ion-item>
+  </ion-item-sliding>
+
+  <ion-col col-4> 
+      <button ion-button icon-only (click)="addComment()"> 
+        <ion-icon name="star"></ion-icon> 
+      </button> 
+  </ion-col>
+  <ion-col col-4> 
+      <button ion-button icon-only (click)="showComment()"> 
+        <ion-icon name="star"></ion-icon> 
+      </button> 
+  </ion-col>
+  <ion-item-sliding #slidingItem *ngFor="let com of com1; let i = index"> 
+    <ion-item (click)="addReply(com2[i])"> {{com.msg}} </ion-item>
+    <ion-item *ngIf="com.reply"> REPLY : {{com.reply.msg}} </ion-item>
+  </ion-item-sliding> 
+  <ion-col col-12> 
+      <button ion-button icon-only (click)="addItem()"> 
+        <ion-icon name="list"></ion-icon> 
+      </button> 
+  </ion-col>     
+</ion-content>

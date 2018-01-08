@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Page
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form>
+
+    <ion-item>
+      <ion-label>
+        Item list in
+      </ion-label>
+      <ion-select [(ngModel)]="category" name="category">
+        
+        <ion-option checked="true" value="selling">
+            내가 올린 물품
+        </ion-option>
+
+        <ion-option value="purchasing">
+            내가 낙찰한 물품
+        </ion-option>
+    </ion-select>
+
+    </ion-item>
+
+    <div class="spacer" style="width:300px;height:10px;"></div>
+
+    <ion-list>
+      <ion-item *ngFor="let post of getList(category)" (click)="goPostDetail(post)" detail-push>
+        <ion-thumbnail item-left>
+          <img src="{{post.val().picture}}">
+        </ion-thumbnail>
+        <h2>{{post.val().title}} idx : {{post.key}}</h2>
+        <p>현재가 : {{post.val().price}}</p>
+        <ion-thumbnail item-right>
+          <img *ngIf="post.val().status=='Off'" src="assets/icon/nobas.png">
+          <img *ngIf="post.val().status=='On'" src="assets/icon/basket.png">    
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>
+
+  </form>
+</ion-content>
